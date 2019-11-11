@@ -1,0 +1,23 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string s) {
+    //s의 가운데 글자를 반환하는 변수 answer
+    string answer = "";
+    //문자열 사이즈
+    int size = s.size();
+    
+    //문자열s가 홀수이면 가운데는 크기의 절반
+    if(size%2==1){
+      answer=s[size/2];
+    }
+    //s가 짝수이면 가운데 두글자 가져옴
+    else{
+        answer=s[size/2-1];
+        answer+=s[size/2];
+    }
+    
+    return answer;
+}
