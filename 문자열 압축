@@ -1,0 +1,61 @@
+#include <string>
+#include <vector>
+#include <algorithm> //min(최소값 찾는 함수 사용을 위해 알고리즘 추가)
+
+using namespace std;
+
+int solution(string s) {
+    int answer = s.length();
+    //최대길이는 s/2를 넘어가지 않음
+    for(int i=1; i<=s.length()/2;i++){
+        int pos=0; //자리변수
+        int len=s.length(); //압축된 길이(=len) 최초 길이로 초기화
+    
+        while(true){
+            //압축의 기준이 되는 문자 찾기
+            string unit = s.substr(pos,i);//문자열 자르기 
+            pos += i;//길이만큼 증가시킴
+            
+            if(pos >= s.length()) break; //길이보다 커지면 무한루프 종료
+            
+            //뒤에 연속된 문자의 개수 세기
+            int cnt=0;
+            while(true){
+                //현재 위치에서 동일한 문자를 가져와서 같은지 비교
+                if (unit.compare(s.substr(pos,i)) == 0){
+                    //문자가 같으면 cnt 추가해줌
+                    cnt+=1;
+                    pos+=i;
+                }
+                else{
+                    //문자가 같지 않으면 종료
+                    break;
+                }
+            }
+            
+            if(cnt>0){
+                //압축된 경우가 있는 경우 반복된 횟수만큼 빼줌
+                len-=i*cnt;
+                
+                if(cnt<9){
+                    len +=1; //반복된 횟수 표현을 위해서    
+                }
+                else if(cnt<99){
+                    //두자리 이상일때
+                    len+=2;
+                }
+                else if(cnt<999){
+                    //세자리 이상일때
+                    len+=3;
+                }
+                else{//s의 길이는 최대 1000이기 때문에 
+                    len+=4;
+                }
+                
+            }
+        }
+        answer = min(answer,len);
+    }
+    
+    return answer;
+}
