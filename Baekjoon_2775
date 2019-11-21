@@ -1,1 +1,26 @@
+#include <iostream>
 
+using namespace std;
+int tot[15][15];
+int main(){
+    int testcase,i,k,n;
+    cin >> testcase;
+    
+    for(i=1;i<=14;i++){
+        tot[0][i]=i;
+    }
+   
+    for(int x=1;x<=14;x++){
+        for(int y=1;y<=14;y++){
+            for(int j=1;j<=y;j++){
+                tot[x][y]+=tot[x-1][j];    
+            }
+        
+        }       
+    }
+    for(i=1;i<=testcase;i++){
+        cin >> k >> n;
+        cout << tot[k][n] << endl;
+    }
+   
+}
