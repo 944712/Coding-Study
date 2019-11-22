@@ -1,0 +1,21 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(int n) {
+    string answer = "";
+    
+    for(int i=1;i<=n;i++){
+        //문자가 홀수번째이면 수
+        if(i%2==1){
+            answer+="수";
+        }
+        //문자가 짝수번째이고 0이 아니면 박
+        else if(i%2==0 && i!=0){
+            answer+="박";
+        }
+    }
+    
+    return answer;
+}
