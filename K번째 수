@@ -1,0 +1,23 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> solution(vector<int> array, vector<vector<int>> commands) {
+    vector<int> answer;//output값을 넣어줄 벡터
+    vector<int> arr; //array에서 자른후 정렬해줄 벡터
+    
+    for(int i=0;i<commands.size();i++){
+        //i부터 j까지 자름
+        for(int j=commands[i][0]-1;j<commands[i][1];j++){
+            arr.push_back(array[j]);
+        }
+        //정렬
+        sort(arr.begin(),arr.end());
+        //k번째 숫자 가져옴
+        answer.push_back(arr[commands[i][2]-1]);
+        arr.clear();
+    }
+    return answer;
+}
