@@ -1,0 +1,19 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(vector<int> citations) {
+    int answer = 0;
+    
+    //정렬
+    sort(citations.begin(),citations.end(),greater<int>());
+    
+    //정렬 후 h번 이상 인용된 논문의 수가 h인 수 찾는 반복문
+    while (answer < citations.size() && citations[answer] >= answer+1) {
+        answer+=1;
+    }
+    
+    return answer;
+}
