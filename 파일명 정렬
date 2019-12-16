@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int find_number(string s) {
+    int size = s.size();
+    for (int i = 0; i < size; i++) {
+        if (s[i] >= '0' && s[i] <= '9') {
+            return i;
+        }
+    }
+}
+int get_number(string s) {
+    return stoi(s.substr(find_number(s)));
+}
+string get_head(string s) {
+    string str = s.substr(0, find_number(s));
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
+}
+
+bool num_comp(string str1, string str2) {
+    return get_number(str1) < get_number(str2);
+}
+bool head_comp(string str1, string str2) {
+    return get_head(str1) < get_head(str2);
+}
+
+vector<string> solution(vector<string> files) {
+//C++에서 sort는 퀵정렬, stable_sort는 병합정렬, sort_heap은 힙정렬
+
+    stable_sort(files.begin(), files.end(), num_comp);
+    stable_sort(files.begin(), files.end(), head_comp);
+
+
+    return files;
+}
