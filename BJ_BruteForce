@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+    //벡터를 쌍으로 두개 만들어줌
+    //<<몸무게,키>,순위>
+    vector <pair<pair<int,int>,int>> v;
+    int n;
+    cin >> n;
+    for(int i=0;i<n;i++){
+        int weight,height;
+        cin >> weight >> height;
+        v.push_back(make_pair(make_pair(weight,height),1));
+    }
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+        // 몸무게와 키를 비교해서 둘다 작을 시에만 등수를 1씩 추가함
+            if (v[i].first.first < v[j].first.first && v[i].first.second < v[j].first.second){
+                v[i].second += 1;
+            }
+        }
+    
+    }
+    for(int i=0;i<n;i++){
+        cout << v[i].second <<" ";
+    }
+    
+    return 0;
+}
