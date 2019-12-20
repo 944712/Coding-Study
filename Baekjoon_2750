@@ -1,3 +1,31 @@
+/*선택정렬
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int main(){
+    vector<int> v;
+    int tmp,n;
+    for(int i=0;i<v.size()-1;i++){
+        tmp = i;
+       for(int j=i+1;j<v.size();j++){
+           if(v[tmp]>=v[j]){tmp=j;}
+       }
+        swap(v[i],v[tmp]);
+    }
+    
+    for(int i=0;i<n;i++){
+        cout << v[i] << "\n";
+    }
+    
+    return 0;
+}
+
+*/
+
+
 #include <iostream>
 #include <algorithm>
 
